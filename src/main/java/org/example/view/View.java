@@ -1,5 +1,8 @@
 package org.example.view;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Scanner;
 
 import org.example.model.*;
@@ -7,6 +10,10 @@ import org.example.model.*;
 public class View {
 
     public static Scanner input = new Scanner(System.in);
+    Maquina maquina = new Maquina();
+    Tecnico tecnico = new Tecnico();
+    Peca peca = new Peca();
+    OrdemManutencao ordemManutencao = new OrdemManutencao();
 
     public int menuPrincipal(){
 
@@ -36,30 +43,99 @@ public class View {
         System.out.print("|| - ");
         String nome = input.nextLine();
 
-        System.out.println("|| - Digite o CPF do Cliente:                                ||");
+        System.out.println("|| - Digite o setor da Maquina:                              ||");
         System.out.print("|| - ");
-        String cpf = input.nextLine();
+        String setor = input.nextLine();
 
-        System.out.println("|| - Digite o endereco do Cliente:                           ||");
+        System.out.println("|| - Digite o status da Maquina:                             ||");
         System.out.print("|| - ");
-        String endereco = input.nextLine();
+        String status = input.nextLine();
 
-        System.out.println("|| - Digite o cidade do Cliente:                             ||");
-        System.out.print("|| - ");
-        String cidade = input.nextLine();
-
-        System.out.println("|| - Digite o Estado do Cliente:                             ||");
-        System.out.print("|| - ");
-        String estado = input.nextLine();
         System.out.println("||===========================================================||");
 
-        cliente = new Cliente(nome , cpf , endereco, cidade, estado);
+       maquina = new Maquina(nome , setor, status);
 
-        return cliente;
+        return maquina;
+    }
+
+    public Tecnico cadastrarTecnico (){
+
+        System.out.println("||===========================================================||");
+        System.out.println("|| - Digite o nome:                               ||");
+        System.out.print("|| - ");
+        String nome = input.nextLine();
+
+        System.out.println("|| - Digite a Especialidade:                                 ||");
+        System.out.print("|| - ");
+        String especialidade = input.nextLine();
+
+
+
+        System.out.println("||===========================================================||");
+
+        tecnico = new Tecnico(nome , especialidade);
+
+        return tecnico;
     }
 
 
+    public Peca cadastrarPeca (){
+
+        System.out.println("||===========================================================||");
+        System.out.println("|| - Digite o nome:                                          ||");
+        System.out.print("|| - ");
+        String nome = input.nextLine();
+
+        System.out.println("|| - Digite o estoque:                                       ||");
+        System.out.print("|| - ");
+        double estoque = input.nextDouble();
 
 
+
+        System.out.println("||===========================================================||");
+
+        peca = new Peca(nome , estoque);
+
+        return peca;
+    }
+
+    public OrdemManutencao cadastrarOrdemManutencao (){
+
+        System.out.println("||===========================================================||");
+        System.out.println("|| - Digite o id da Maquina:                               ||");
+        System.out.print("|| - ");
+        int idMaquina = input.nextInt();
+
+        System.out.println("||===========================================================||");
+        System.out.println("|| - Digite o id do Tecnico:                               ||");
+        System.out.print("|| - ");
+        int idTecnico = input.nextInt();
+
+        System.out.println("|| - Digite a data da Solicitação(formato (dd/mm/yyyy)):                              ||");
+        System.out.print("|| - ");
+        String dataText = input.nextLine();
+
+
+
+        try{
+            SimpleDateFormat formato = new SimpleDateFormat("dd/mm/yyyy");
+            Date dateUtil = formato.parse(dataText);
+
+            Date dataSql = new Date(dateUtil.getTime());
+
+        }catch (Exception e){
+            System.err.println("|| ####################  Formato Errado!  ################## ||");
+        }
+
+            System.out.println("|| - Digite o status da Maquina:                             ||");
+        System.out.print("|| - ");
+        String status = input.nextLine();
+
+        System.out.println("||===========================================================||");
+
+        ordemManutencao = new OrdemManutencao();
+
+        return ordemManutencao;
+    }
 
 }

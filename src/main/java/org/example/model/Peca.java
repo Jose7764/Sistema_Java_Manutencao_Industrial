@@ -12,6 +12,11 @@ public class Peca {
         this.nome = nome;
         this.estoque = estoque;
     }
+    public Peca( String nome, double estoque) {
+
+        this.nome = nome;
+        this.estoque = estoque;
+    }
 
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }

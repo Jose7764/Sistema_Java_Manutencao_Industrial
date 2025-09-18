@@ -15,6 +15,13 @@ public class Maquina {
         this.status = status;
     }
 
+    public Maquina( String nome, String setor, String status) {
+
+        this.nome = nome;
+        this.setor = setor;
+        this.status = status;
+    }
+
     public int getId() { return id; }
     public void setId(int id) { this.id = id; }
 
